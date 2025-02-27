@@ -16,13 +16,13 @@ const Index = () => {
       icon: <Atom className="w-8 h-8" />,
       title: "Seals's Room 1st Period",
       description: "Step into a unique physics learning environment",
-      url: "#" // We'll add this later
+      url: "/experiments/seals-room.html"
     },
     {
       icon: <Magnet className="w-8 h-8" />,
       title: "Haunted 3-Step Pendulum",
       description: "Discover the mesmerizing world of pendulum motion",
-      url: "#" // We'll add this later
+      url: "/experiments/haunted-pendulum.html"
     },
     {
       icon: <Beaker className="w-8 h-8" />,
@@ -55,6 +55,8 @@ const Index = () => {
             <a
               key={index}
               href={experiment.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 animate-fade-up no-underline"
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               onMouseEnter={() => setHoveredCard(index)}
