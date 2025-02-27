@@ -5,26 +5,26 @@ import { useState } from "react";
 const Index = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const topics = [
+  const experiments = [
     {
-      icon: <Atom className="w-8 h-8" />,
-      title: "Quantum Physics",
-      description: "Explore the mysterious world of quantum mechanics",
+      icon: <Rocket className="w-8 h-8" />,
+      title: "Cannon Ball",
+      description: "Experience the physics of projectile motion",
     },
     {
-      icon: <Beaker className="w-8 h-8" />,
-      title: "Experiments",
-      description: "Hands-on physics experiments and demonstrations",
+      icon: <Atom className="w-8 h-8" />,
+      title: "Seals's Room 1st Period",
+      description: "Step into a unique physics learning environment",
     },
     {
       icon: <Magnet className="w-8 h-8" />,
-      title: "Electromagnetics",
-      description: "Discover the forces of electricity and magnetism",
+      title: "Haunted 3-Step Pendulum",
+      description: "Discover the mesmerizing world of pendulum motion",
     },
     {
-      icon: <Rocket className="w-8 h-8" />,
-      title: "Mechanics",
-      description: "Learn about forces, motion, and energy",
+      icon: <Beaker className="w-8 h-8" />,
+      title: "In Progress",
+      description: "Stay tuned for our next exciting experiment",
     },
   ];
 
@@ -33,21 +33,21 @@ const Index = () => {
       {/* Hero Section */}
       <div className="container px-4 pt-20 pb-16 text-center animate-fade-in">
         <div className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-primary bg-primary/10 rounded-full animate-fade-up">
-          Welcome to Physics Fun House
+          Welcome to Seals Physics Fun House
         </div>
         <h1 className="max-w-4xl mx-auto text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl animate-fade-up" style={{ animationDelay: "0.1s" }}>
           Discover the Magic of
           <span className="text-primary"> Physics</span>
         </h1>
         <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          Embark on an exciting journey through the fundamental laws that govern our universe. Experience physics like never before.
+          Embark on an exciting journey through hands-on experiments that bring physics to life. Experience our unique collection of interactive demonstrations.
         </p>
       </div>
 
-      {/* Topics Grid */}
+      {/* Experiments Grid */}
       <div className="container px-4 py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {topics.map((topic, index) => (
+          {experiments.map((experiment, index) => (
             <div
               key={index}
               className="relative p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 animate-fade-up"
@@ -57,11 +57,11 @@ const Index = () => {
             >
               <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-primary/10">
                 <div className={`text-primary transition-transform duration-300 ${hoveredCard === index ? 'scale-110' : ''}`}>
-                  {topic.icon}
+                  {experiment.icon}
                 </div>
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900">{topic.title}</h3>
-              <p className="text-gray-600">{topic.description}</p>
+              <h3 className="mb-2 text-xl font-semibold text-gray-900">{experiment.title}</h3>
+              <p className="text-gray-600">{experiment.description}</p>
             </div>
           ))}
         </div>
