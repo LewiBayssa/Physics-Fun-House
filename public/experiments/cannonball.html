@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cannonball with Friction, Power, and Gravity Controls</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  .controls {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+  label {
+    margin-bottom: 5px;
+  }
+  button {
+    height: 30px;
+    padding: 0 15px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="controls">
+  <div class="control-group">
+    <label for="frictionSlider">Air Friction: <span id="frictionValue">0</span></label>
+    <input type="range" id="frictionSlider" min="0" max="1" step="0.01" value="0">
+  </div>
+  <div class="control-group">
+    <label for="powerSlider">Initial Power: <span id="powerValue">15</span></label>
+    <input type="range" id="powerSlider" min="5" max="30" step="1" value="15">
+  </div>
+  <div class="control-group">
+    <label for="gravitySlider">Gravity: <span id="gravityValue">1</span></label>
+    <input type="range" id="gravitySlider" min="0" max="1" step="0.01" value="1">
+  </div>
+  <button id="resetButton">Reset Ball</button>
+</div>
+<canvas id="myCanvas" style="border:2px solid"></canvas>
+
+<script>
+  // UI Controls
+  const frictionSlider = document.getElementById("frictionSlider");
+  const frictionValue = document.getElementById("frictionValue");
+  const powerSlider = document.getElementById("powerSlider");
+  const powerValue = document.getElementById("powerValue");
+  const gravitySlider = document.getElementById("gravitySlider");
+  const gravityValue = document.getElementById("gravityValue");
+  const resetButton = document.getElementById("resetButton");
+  
+  // Canvas setup
+  var canvas = document.getElementById("myCanvas");
+  var c = canvas.getContext("2d");
+  canvas.width = window.innerWidth - 40;
+  canvas.height = window.innerHeight - 120;
+  var simMinWidth = 20.0;
+  var cScale = Math.min(canvas.width, canvas.height) / simMinWidth;
+  var simWidth = canvas.width / cScale;
+  var simHeight = canvas.height / cScale;
+  
+  function cX(pos) {
+    return pos.x * cScale;
+  }
+  
+  function cY(pos) {
+    return canvas.height - pos.y * cScale;
+  }
+  
+  // Scene parameters
+  var baseGravity = -10.0;
+  var gravityStrength = 1.0;
+  var gravity = { x: 0.0, y: baseGravity * gravityStrength };
+  var timeStep = 1.0 / 60.0;
+  var frictionAmount = 0;
+  var bounceDamping = 0.8;
+  var initialPower = 15;
+  var initialPosition = { x: 0.2, y: 0.2 };
+  
+  // Ball object
+  var ball = {
+    radius: 0.2,
+    pos: { x: initialPosition.x, y: initialPosition.y },
+    vel: { x: 10.0, y: initialPower }
+  };
+  
+  // Event listeners for controls
+  frictionSlider.addEventListener("input", function() {
+    frictionAmount = parseFloat(this.value);
+    frictionValue.textContent = frictionAmount.toFixed(2);
+  });
+  
+  powerSlider.addEventListener("input", function() {
+    initialPower = parseInt(this.value);
+    powerValue.textContent = initialPower;
+  });
+  
+  gravitySlider.addEventListener("input", function() {
+    gravityStrength = parseFloat(this.value);
+    gravityValue.textContent = gravityStrength.toFixed(2);
+    gravity.y = baseGravity * gravityStrength;
+  });
+  
+  resetButton.addEventListener("click", resetBall);
+  
+  function resetBall() {
+    ball.pos = { x: initialPosition.x, y: initialPosition.y };
+    ball.vel = { x: 10.0, y: initialPower };
+  }
+  
+  // Drawing functions
+  function draw() {
+    c.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Draw ball
+    c.fillStyle = "#FF0000";
+    c.beginPath();
+    c.arc(cX(ball.pos), cY(ball.pos), cScale * ball.radius, 0.0, 2.0 * Math.PI);
+    c.closePath();
+    c.fill();
+  }
+  
+  // Simulation step
+  function simulate() {
+    // Apply gravity only if gravity is not zero
+    if (gravityStrength > 0) {
+      ball.vel.x += gravity.x * timeStep;
+      ball.vel.y += gravity.y * timeStep;
+    }
+    
+    // Apply air resistance only if friction is not zero
+    if (frictionAmount > 0) {
+      let frictionFactor = 1.0 - (frictionAmount * 0.1);
+      ball.vel.x *= frictionFactor;
+      ball.vel.y *= frictionFactor;
+    }
+    
+    // Update position
+    ball.pos.x += ball.vel.x * timeStep;
+    ball.pos.y += ball.vel.y * timeStep;
+    
+    // Collision with walls
+    const effectiveDamping = frictionAmount > 0 ? bounceDamping : 1.0;
+    
+    if (ball.pos.x < ball.radius) {
+      ball.pos.x = ball.radius;
+      ball.vel.x = -ball.vel.x * effectiveDamping;
+    }
+    if (ball.pos.x > simWidth - ball.radius) {
+      ball.pos.x = simWidth - ball.radius;
+      ball.vel.x = -ball.vel.x * effectiveDamping;
+    }
+    if (ball.pos.y < ball.radius) {
+      ball.pos.y = ball.radius;
+      ball.vel.y = -ball.vel.y * effectiveDamping;
+    }
+    if (ball.pos.y > simHeight - ball.radius) {
+      ball.pos.y = simHeight - ball.radius;
+      ball.vel.y = -ball.vel.y * effectiveDamping;
+    }
+  }
+  
+  // Animation loop
+  function update() {
+    simulate();
+    draw();
+    requestAnimationFrame(update);
+  }
+  
+  // Start the animation
+  update();
+</script>
+</body>
+</html>
