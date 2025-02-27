@@ -31,15 +31,15 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-accent">
       {/* Hero Section */}
-      <div className="container px-4 pt-20 pb-16 text-center animate-fade-in">
-        <div className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-primary bg-primary/10 rounded-full animate-fade-up">
+      <div className="container px-4 pt-32 pb-24 text-center animate-fade-in">
+        <div className="inline-block px-6 py-2 mb-8 text-lg font-medium text-primary bg-primary/10 rounded-full animate-fade-up transform hover:scale-105 transition-transform">
           Welcome to Seals Physics Fun House
         </div>
-        <h1 className="max-w-4xl mx-auto text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl animate-fade-up" style={{ animationDelay: "0.1s" }}>
+        <h1 className="max-w-5xl mx-auto text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 sm:text-6xl animate-fade-up" style={{ animationDelay: "0.1s" }}>
           Discover the Magic of
-          <span className="text-primary"> Physics</span>
+          <div className="text-primary mt-2">Physics</div>
         </h1>
-        <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-600 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <p className="max-w-2xl mx-auto mt-8 text-xl text-gray-600 animate-fade-up" style={{ animationDelay: "0.2s" }}>
           Embark on an exciting journey through hands-on experiments that bring physics to life. Experience our unique collection of interactive demonstrations.
         </p>
       </div>
