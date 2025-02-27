@@ -1,4 +1,5 @@
-import { Atom, Beaker, Magnet, Rocket } from "lucide-react";
+
+import { Atom, Beaker, Magnet, Rocket, Droplet } from "lucide-react";
 import { useState } from "react";
 
 const Index = () => {
@@ -24,10 +25,16 @@ const Index = () => {
       url: "/experiments/haunted-pendulum.html"
     },
     {
+      icon: <Droplet className="w-8 h-8" />,
+      title: "Fluids..Oh no",
+      description: "Explore fluid dynamics and particle interactions",
+      url: "/experiments/fluids.html"
+    },
+    {
       icon: <Beaker className="w-8 h-8" />,
       title: "In Progress",
       description: "Stay tuned for our next exciting experiment",
-      url: "#"
+      url: "/experiments/in-progress.html"
     },
   ];
 
@@ -49,7 +56,7 @@ const Index = () => {
 
       {/* Experiments Grid */}
       <div className="container px-4 py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
           {experiments.map((experiment, index) => (
             <a
               key={index}
