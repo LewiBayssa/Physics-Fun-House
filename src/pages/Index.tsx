@@ -10,21 +10,25 @@ const Index = () => {
       icon: <Rocket className="w-8 h-8" />,
       title: "Cannon Ball",
       description: "Experience the physics of projectile motion",
+      url: "/experiments/cannonball.html"
     },
     {
       icon: <Atom className="w-8 h-8" />,
       title: "Seals's Room 1st Period",
       description: "Step into a unique physics learning environment",
+      url: "/experiments/seals-room.html"
     },
     {
       icon: <Magnet className="w-8 h-8" />,
       title: "Haunted 3-Step Pendulum",
       description: "Discover the mesmerizing world of pendulum motion",
+      url: "/experiments/haunted-pendulum.html"
     },
     {
       icon: <Beaker className="w-8 h-8" />,
       title: "In Progress",
       description: "Stay tuned for our next exciting experiment",
+      url: "#"
     },
   ];
 
@@ -48,9 +52,12 @@ const Index = () => {
       <div className="container px-4 py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {experiments.map((experiment, index) => (
-            <div
+            <a
               key={index}
-              className="relative p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 animate-fade-up"
+              href={experiment.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 animate-fade-up no-underline"
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -62,7 +69,7 @@ const Index = () => {
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900">{experiment.title}</h3>
               <p className="text-gray-600">{experiment.description}</p>
-            </div>
+            </a>
           ))}
         </div>
       </div>
