@@ -1,4 +1,3 @@
-
 import { Atom, Beaker, Magnet, Rocket } from "lucide-react";
 import { useState } from "react";
 
@@ -55,8 +54,6 @@ const Index = () => {
             <a
               key={index}
               href={experiment.url}
-              target="_blank"
-              rel="noopener noreferrer"
               className="relative p-6 bg-white rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 animate-fade-up no-underline"
               style={{ animationDelay: `${0.3 + index * 0.1}s` }}
               onMouseEnter={() => setHoveredCard(index)}
