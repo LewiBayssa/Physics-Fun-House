@@ -50,7 +50,7 @@ const Index = () => {
           <div className="text-primary mt-2">Physics</div>
         </h1>
         <p className="max-w-2xl mx-auto mt-8 text-xl text-gray-600 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-          Embark on an exciting journey through hands-on experiments that bring physics to life. Experience our unique collection of interactive demonstrations.
+          Get ready for a life transforming experience from the Physics goats: Lewi, Henok, & Cooper.
         </p>
       </div>
 
@@ -75,40 +75,6 @@ const Index = () => {
               <p className="text-gray-600">{experiment.description}</p>
             </a>
           ))}
-        </div>
-      </div>
-
-      {/* Feature Section */}
-      <div className="container px-4 py-16">
-        <div className="p-8 bg-white/80 backdrop-blur-sm rounded-3xl shadow-lg">
-          <div className="grid gap-8 md:grid-cols-2">
-            <div className="space-y-6">
-              <div className="inline-block px-4 py-1.5 text-sm font-medium text-secondary bg-secondary/10 rounded-full">
-                Why Choose Us
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900">
-                Interactive Learning Experience
-              </h2>
-              <p className="text-gray-600">
-                Our platform offers engaging physics content through interactive simulations, experiments, and real-world applications. Perfect for students, educators, and physics enthusiasts.
-              </p>
-            </div>
-            <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-sm">
-                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur-3xl animate-float"></div>
-                <div className="relative p-6 bg-white rounded-2xl shadow-lg">
-                  <div className="grid gap-4">
-                    {[1, 2, 3].map((item) => (
-                      <div key={item} className="flex items-center p-3 bg-gray-50 rounded-lg">
-                        <div className="w-2 h-2 mr-3 rounded-full bg-primary"></div>
-                        <p className="text-sm text-gray-600">Interactive Feature {item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
